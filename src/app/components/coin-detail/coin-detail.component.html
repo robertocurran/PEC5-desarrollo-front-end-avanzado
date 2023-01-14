@@ -1,0 +1,158 @@
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <div class="title-detail">
+        <div class="crypto-img-container">
+          <img class="crypto-img" src="{{ item.image }} " />
+        </div>
+        <div class="title-detail-text">
+          <h2>{{ item.name }}</h2>
+          <mat-card-subtitle>{{ item.symbol | uppercase }}</mat-card-subtitle>
+        </div>
+        <div class="main-info">
+          <div>{{ item.current_price | number : "1.2-8" }} €</div>
+          <div class="price text-success" *ngIf="item.price_change_24h >= 0">
+            ▲ {{ item.price_change_percentage_24h | number : "1.0-6" }}%
+          </div>
+          <div class="price text-danger" *ngIf="item.price_change_24h < 0">
+            ▼ {{ item.price_change_percentage_24h | number : "1.0-3" }}%
+          </div>
+        </div>
+        <button (click)="back()" class="back" mat-raised-button color="primary">
+          <span class="material-icons">arrow_back</span> Back
+        </button>
+      </div>
+
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-description>
+            {{
+              panelOpenState
+                ? "Click to close details"
+                : "Click to expand details"
+            }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+          <mat-tab label="Information">
+            <table class="table table-sm cointable">
+              <tbody>
+                <tr>
+                  <th>ID</th>
+                  <td>{{ item.id | titlecase }}</td>
+                </tr>
+                <tr>
+                  <th>Symbol</th>
+                  <td>{{ item.symbol | uppercase }}</td>
+                </tr>
+                <tr>
+                  <th>Current Price</th>
+                  <td>{{ item.current_price | number : "1.1-5" }} €</td>
+                </tr>
+                <tr>
+                  <th>Market Cap</th>
+                  <td>{{ item.market_cap | number : "1.1-5" }} €</td>
+                </tr>
+                <tr>
+                  <th>Fully Diluted Valuation</th>
+                  <td>
+                    {{ item.fully_diluted_valuation | number : "1.1-5" }} €
+                  </td>
+                </tr>
+                <tr>
+                  <th>Total Volume</th>
+                  <td>{{ item.total_volume | number : "1.1-5" }} €</td>
+                </tr>
+                <tr>
+                  <th>Circulating Supply</th>
+                  <td>{{ item.circulating_supply | number : "1.0-0" }}</td>
+                </tr>
+                <tr>
+                  <th>Market Cap Rank</th>
+                  <td>{{ item.market_cap_rank }}</td>
+                </tr>
+                <tr>
+                  <th>Total Supply</th>
+                  <td>{{ item.total_supply | number : "1.0-0" }}</td>
+                </tr>
+                <tr>
+                  <th>Max Supply</th>
+                  <td>{{ item.max_supply | number : "1.0-0" }}</td>
+                </tr>
+
+                <tr>
+                  <th>Last Updated</th>
+                  <td>{{ item.last_updated | date : "full" }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-tab>
+          <mat-tab label="24 hours changes">
+            <table class="table table-sm cointable">
+              <tbody>
+                <tr>
+                  <th>24h High</th>
+                  <td>{{ item.high_24h | number : "1.1-5" }} €</td>
+                </tr>
+                <tr>
+                  <th>24h Low</th>
+                  <td>{{ item.low_24h | number : "1.1-5" }} €</td>
+                </tr>
+                <tr>
+                  <th>24h Price Change</th>
+                  <td>{{ item.price_change_24h | number : "1.1-5" }} €</td>
+                </tr>
+                <tr>
+                  <th>24h Price Change Percentage</th>
+                  <td>{{ item.price_change_percentage_24h }}%</td>
+                </tr>
+                <tr>
+                  <th>24h Market Cap Change</th>
+                  <td>{{ item.market_cap_change_24h | number : "1.1-5" }}</td>
+                </tr>
+                <tr>
+                  <th>24h Market Cap Change Percentage</th>
+                  <td>{{ item.market_cap_change_percentage_24h }}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-tab>
+          <mat-tab label="ATH/ATL">
+            <table class="table table-sm cointable">
+              <tbody>
+                <tr>
+                  <th>ATH</th>
+                  <td>{{ item.ath | number : "1.1-5" }} €</td>
+                </tr>
+                <tr>
+                  <th>ATH Change Percentage</th>
+                  <td>{{ item.ath_change_percentage }}%</td>
+                </tr>
+                <tr>
+                  <th>ATH Date</th>
+                  <td>{{ item.ath_date | date : "full" }}</td>
+                </tr>
+                <tr>
+                  <th>ATL</th>
+                  <td>{{ item.atl | number : "1.1-5" }} €</td>
+                </tr>
+                <tr>
+                  <th>ATL Change Percentage</th>
+                  <td>{{ item.atl_change_percentage }}%</td>
+                </tr>
+                <tr>
+                  <th>ATL Date</th>
+                  <td>{{ item.atl_date | date : "full" }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-expansion-panel>
+    </mat-card-content>
+  </mat-card>
+</div>

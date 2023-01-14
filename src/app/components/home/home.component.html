@@ -1,0 +1,36 @@
+<div class="header">
+  <h1 class="title">📈 Crypto Tracker 🚀</h1>
+  <div class="toggle-buttons">
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle
+        value="table"
+        aria-pressed="show_table"
+        (click)="setTable()"
+      >
+        <span class="material-icons">view_list</span>
+      </mat-button-toggle>
+      <mat-button-toggle
+        value="cards"
+        aria-pressed="show_cards"
+        (click)="setCards()"
+      >
+        <span class="material-icons">grid_view</span>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>
+<div class="container">
+  <div *ngIf="loading">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+
+  <div class="table-container">
+    <app-table [coins]="coins" *ngIf="loaded && show_table"></app-table>
+  </div>
+
+  <div class="card-container" *ngIf="loaded && show_cards">
+    <div *ngFor="let coin of coins">
+      <app-card [item]="coin" (click)="openDetail(coin)"></app-card>
+    </div>
+  </div>
+</div>

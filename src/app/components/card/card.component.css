@@ -1,0 +1,21 @@
+.card {
+  max-width: 400px;
+  margin: 1em;
+  height: 100%;
+}
+
+.card:hover {
+  background-color: #f5f5f5;
+}
+
+.crypto-img {
+  width: 3em;
+}
+
+.price {
+  font-size: 1.3em;
+}
+
+mat-card {
+  text-align: center;
+}

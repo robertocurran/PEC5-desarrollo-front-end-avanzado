@@ -1,0 +1,17 @@
+<mat-card class="card animate__animated animate__fadeInUp">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img class="crypto-img" src="{{ item.image }} " />
+    </div>
+    <mat-card-title>{{ item.name }}</mat-card-title>
+    <mat-card-subtitle>{{ item.symbol | uppercase }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="price text-success" *ngIf="item.price_change_24h >= 0">
+      ▲ {{ item.current_price | number : "1.1-5" }} €
+    </div>
+    <div class="price text-danger" *ngIf="item.price_change_24h < 0">
+      ▼ {{ item.current_price | number : "1.1-5" }} €
+    </div>
+  </mat-card-content>
+</mat-card>
